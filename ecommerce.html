@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcomStore | Complete Portal</title>
+<style>
+  /*
+========================================
+BASE STYLES
+========================================
+*/
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #28a745;
+    --background-light: #f8f9fa;
+    --text-dark: #343a40;
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* --- Header & Navigation --- */
+.main-header {
+    background-color: white;
+    padding: 15px 0;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 25px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* Cart Counter Styling */
+#cart-counter {
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.8em;
+    position: absolute;
+    top: -8px;
+    right: -15px;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    background: linear-gradient(rgba(0, 123, 255, 0.8), rgba(0, 123, 255, 0.6)), url('https://via.placeholder.com/1200x400/007bff/FFFFFF?text=EcomStore+Banner') center/cover no-repeat;
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.hero-section h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.cta-button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #1e7e34;
+}
+
+/*
+========================================
+PRODUCT LISTING STYLES
+========================================
+*/
+.product-listing-section {
+    padding: 40px 0;
+}
+
+.product-listing-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+}
+
+.product-grid-full {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.product-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 1.4em;
+    color: #dc3545;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.add-to-cart {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.add-to-cart:hover {
+    background-color: #0056b3;
+}
+
+.view-reviews {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 0.9em;
+    margin-top: 10px;
+    display: block;
+}
+
+/*
+========================================
+FORM STYLES (Feature 2)
+========================================
+*/
+.form-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 0;
+    gap: 30px;
+}
+
+.form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    width: 100%;
+    max-width: 450px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: none;
+}
+
+/*
+========================================
+FOOTER STYLES (Feature 3)
+========================================
+*/
+.main-footer {
+    background-color: var(--text-dark);
+    color: white;
+    padding: 40px 0 20px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.footer-links h4 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+    color: #cccccc;
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: white;
+}
+
+/*
+========================================
+RESPONSIVE DESIGN
+========================================
+*/
+@media (max-width: 900px) {
+    .main-header {
+        flex-direction: column;
+    }
+    nav ul {
+        padding: 10px 0;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    nav ul li {
+        margin: 5px 10px;
+    }
+    .form-section {
+        flex-direction: column;
+        align-items: center;
+    }
+    .form-container {
+        max-width: 90%;
+        margin-bottom: 20px;
+    }
+    .footer-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+}
+</style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">EcomStore</div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="#products-section">Product Items</a></li>
+                <li><a href="#contact-footer">Contact Us</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#login-register" class="auth-link">Login/Register</a></li>
+                <li style="position: relative;"><a href="#cart">🛒 <span id="cart-counter">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        
+        <section class="hero-section">
+            <h1>Welcome to Your E-Commerce Hub</h1>
+            <p>Shop our curated collection of 10 must-have products!</p>
+            <a href="#products-section" class="cta-button">Start Shopping</a>
+        </section>
+
+        <section id="products-section" class="product-listing-section">
+            <h2>Featured Products (Click to add to Cart!)</h2>
+            <div id="product-list" class="product-grid-full">
+                </div>
+        </section>
+
+        <section id="login-register" class="form-section">
+            <div class="form-container">
+                <h2>User Registration</h2>
+                <form id="registration-form">
+                    <div class="form-group">
+                        <label for="reg-name">Full Name</label>
+                        <input type="text" id="reg-name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email Address</label>
+                        <input type="email" id="reg-email" required placeholder="e.g., user@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" required 
+                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                               title="Min 8 chars, 1 uppercase, 1 lowercase, 1 number."
+                               placeholder="Min 8 chars (complex)">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-confirm-password">Confirm Password</label>
+                        <input type="password" id="reg-confirm-password" required placeholder="Re-enter password">
+                        <span id="password-match-error" class="error-message"></span>
+                    </div>
+                    <button type="submit" class="cta-button">Register Account</button>
+                    <p class="switch-form">Already registered? <a href="#">Login below.</a></p>
+                </form>
+            </div>
+            
+            <div class="form-container login-form">
+                <h2>User Login</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="log-email">Email/Username</label>
+                        <input type="text" id="log-email" required placeholder="Enter email or username">
+                    </div>
+                    <div class="form-group">
+                        <label for="log-password">Password</label>
+                        <input type="password" id="log-password" required placeholder="Enter password">
+                    </div>
+                    <button type="submit" class="cta-button">Log In</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact-footer" class="main-footer">
+        <div class="footer-links container">
+            <div>
+                <h4>Customer Account & Orders</h4>
+                <ul>
+                    <li><a href="#orders">🧾 Orders List</a></li>
+                    <li><a href="#wishlist">❤️ Wishlist</a></li>
+                    <li><a href="#reviews-section">⭐ Comments & Reviews</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 id="about-us">Customer Care & Reporting</h4>
+                <ul>
+                    <li><a href="#ccare">📞 Customer Care (FAQs)</a></li>
+                    <li><a href="#report">⚠️ Reporting Options</a></li>
+                    <li><a href="#about">ℹ️ About Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="container">&copy; 2025 EcomStore. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const products = [
+    { id: 1, name: "Mechanical Keyboard", category: "Electronics", price: 99.99, stock: 15, reviews: 24, image: "https://via.placeholder.com/280x180/007bff/FFFFFF?text=Keyboard" },
+    { id: 2, name: "Noise-Cancelling Headphones", category: "Electronics", price: 149.99, stock: 8, reviews: 15, image: "https://via.placeholder.com/280x180/28a745/FFFFFF?text=Headphones" },
+    { id: 3, name: "Organic Coffee Beans", category: "Grocery", price: 12.50, stock: 45, reviews: 50, image: "https://via.placeholder.com/280x180/ffc107/343a40?text=Coffee+Beans" },
+    { id: 4, name: "Stainless Steel Water Bottle", category: "Home Goods", price: 19.99, stock: 30, reviews: 35, image: "https://via.placeholder.com/280x180/6c757d/FFFFFF?text=Water+Bottle" },
+    { id: 5, name: "Fantasy Novel Set", category: "Books", price: 45.00, stock: 12, reviews: 8, image: "https://via.placeholder.com/280x180/17a2b8/FFFFFF?text=Novel+Set" },
+    { id: 6, name: "Yoga Mat (Eco-Friendly)", category: "Sports & Outdoors", price: 35.00, stock: 22, reviews: 40, image: "https://via.placeholder.com/280x180/fd7e14/FFFFFF?text=Yoga+Mat" },
+    { id: 7, name: "Smart Home Speaker", category: "Electronics", price: 79.00, stock: 18, reviews: 30, image: "https://via.placeholder.com/280x180/6f42c1/FFFFFF?text=Smart+Speaker" },
+    { id: 8, name: "Handmade Leather Wallet", category: "Accessories", price: 55.00, stock: 10, reviews: 10, image: "https://via.placeholder.com/280x180/e83e8c/FFFFFF?text=Leather+Wallet" },
+    { id: 9, name: "Portable Blender", category: "Home Goods", price: 39.99, stock: 25, reviews: 18, image: "https://via.placeholder.com/280x180/ff5722/FFFFFF?text=Blender" },
+    { id: 10, name: "Art Sketchbook", category: "Books & Stationery", price: 14.99, stock: 50, reviews: 28, image: "https://via.placeholder.com/280x180/3f51b5/FFFFFF?text=Sketchbook" }
+];
+
+let cartCount = 0;
+const cartCounter = document.getElementById('cart-counter');
+const productListElement = document.getElementById('product-list');
+
+// Function to render product cards
+function renderProducts() {
+    let htmlContent = '';
+    
+    products.forEach(product => {
+        const stockStatus = product.stock > 0 ? `In Stock: ${product.stock}` : 'Out of Stock';
+        const buttonDisabled = product.stock === 0 ? 'disabled' : '';
+
+        htmlContent += `
+            <div class="product-item" data-id="${product.id}">
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <h3>${product.name}</h3>
+                <p class="category">${product.category}</p>
+                <p class="price"><strong>$${product.price.toFixed(2)}</strong></p>
+                <p class="stock" style="color: ${product.stock > 0 ? 'var(--secondary-color)' : '#dc3545'};">${stockStatus}</p>
+                <button class="add-to-cart" data-id="${product.id}" ${buttonDisabled}>Add to Cart</button>
+                <a href="#reviews-${product.id}" class="view-reviews">${product.reviews} Comments & Reviews</a>
+            </div>
+        `;
+    });
+
+    productListElement.innerHTML = htmlContent;
+}
+
+// Handle Add to Cart Click
+function addToCart(productId) {
+    cartCount++;
+    cartCounter.textContent = cartCount;
+    const product = products.find(p => p.id == productId);
+    
+    // Simple alert for demonstration purposes
+    alert(`"${product.name}" added to cart! Total items: ${cartCount}`);
+}
+
+productListElement.addEventListener('click', function(event) {
+    if (event.target.classList.contains('add-to-cart')) {
+        const productId = event.target.getAttribute('data-id');
+        addToCart(productId);
+    }
+});
+
+
+/*
+========================================
+FORM VALIDATION (Feature 2)
+========================================
+*/
+
+document.getElementById('registration-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop form submission for client-side checks
+
+    const password = document.getElementById('reg-password').value;
+    const confirmPassword = document.getElementById('reg-confirm-password').value;
+    const errorMsg = document.getElementById('password-match-error');
+    
+    let isValid = true;
+
+    // Check 1: Password Match
+    if (password !== confirmPassword) {
+        errorMsg.textContent = 'Passwords do not match!';
+        errorMsg.style.display = 'block';
+        isValid = false;
+    } else {
+        errorMsg.style.display = 'none';
+    }
+
+    // Check 2: Basic HTML5 Pattern check (though the pattern attribute handles this)
+    const passwordInput = document.getElementById('reg-password');
+    if (!passwordInput.checkValidity()) {
+        alert(passwordInput.title);
+        isValid = false;
+    }
+    
+    if (isValid) {
+        alert("Registration Successful! (Note: This is client-side only. Data not sent to server.)");
+        // In a real application, you would send data to the backend here:
+        // this.submit(); 
+    }
+});
+
+document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop submission for demo
+    
+    // In a real application, you would send this data to the server for authentication
+    alert("Login attempt submitted! (Server-side validation is required for real login.)");
+});
+
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', renderProducts);
+    </script>
+</body>
+</html>
