@@ -1,529 +1,480 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcomStore | Complete Portal</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EcomStore | Complete Portal</title>
+
 <style>
-  /*
-========================================
-BASE STYLES
-========================================
-*/
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #28a745;
-    --background-light: #f8f9fa;
-    --text-dark: #343a40;
-    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --primary-color: #0d6efd;
+  --secondary-color: #00ff88;
+  --background-dark: #0e0e0e;
+  --card-bg: #1a1a1a;
+  --text-light: #f1f1f1;
+  --text-muted: #bdbdbd;
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--background-light);
-    color: var(--text-dark);
-    line-height: 1.6;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: var(--background-dark);
+  color: var(--text-light);
+  scroll-behavior: smooth;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-/* --- Header & Navigation --- */
+/* ===== HEADER ===== */
 .main-header {
-    background-color: white;
-    padding: 15px 0;
-    box-shadow: var(--card-shadow);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 5%;
+  background: #111;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 5%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow);
 }
 
 .logo {
-    font-size: 1.8em;
-    font-weight: 700;
-    color: var(--primary-color);
+  font-size: 1.8em;
+  font-weight: 700;
+  color: var(--secondary-color);
+  letter-spacing: 1px;
 }
 
 nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-nav ul li {
-    margin-left: 25px;
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: var(--text-dark);
-    padding: 5px 0;
-    transition: color 0.3s;
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
 }
 
-nav ul li a:hover, nav ul li a.active {
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
+nav ul li a:hover,
+nav ul li a.active {
+  color: var(--secondary-color);
+  border-bottom: 2px solid var(--secondary-color);
 }
 
-/* Cart Counter Styling */
-#cart-counter {
-    background-color: #dc3545;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 0.8em;
-    position: absolute;
-    top: -8px;
-    right: -15px;
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
 }
 
-/* --- Hero Section --- */
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: var(--text-light);
+  border-radius: 3px;
+}
+
+/* ===== HERO ===== */
 .hero-section {
-    background: linear-gradient(rgba(0, 123, 255, 0.8), rgba(0, 123, 255, 0.6)), url('https://via.placeholder.com/1200x400/007bff/FFFFFF?text=EcomStore+Banner') center/cover no-repeat;
-    color: white;
-    padding: 80px 0;
-    text-align: center;
-    margin: 20px 0;
-    border-radius: 8px;
+  background: linear-gradient(
+      rgba(13, 110, 253, 0.6),
+      rgba(0, 0, 0, 0.8)
+    ),
+    url("https://via.placeholder.com/1200x400/000000/FFFFFF?text=EcomStore+Night+Edition")
+      center/cover no-repeat;
+  text-align: center;
+  padding: 90px 20px;
+  border-radius: 12px;
+  margin: 25px;
 }
 
 .hero-section h1 {
-    font-size: 3em;
-    margin-bottom: 10px;
+  font-size: 2.8rem;
+  color: white;
+}
+
+.hero-section p {
+  color: var(--text-muted);
+  margin: 10px 0 25px;
 }
 
 .cta-button {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 10px 25px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
-    margin-top: 20px;
-    transition: background-color 0.3s;
+  background: var(--secondary-color);
+  color: #000;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
 .cta-button:hover {
-    background-color: #1e7e34;
+  background: #00e67a;
 }
 
-/*
-========================================
-PRODUCT LISTING STYLES
-========================================
-*/
+/* ===== PRODUCTS ===== */
 .product-listing-section {
-    padding: 40px 0;
+  padding: 40px 5%;
 }
 
 .product-listing-section h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: var(--primary-color);
+  text-align: center;
+  color: var(--secondary-color);
+  margin-bottom: 30px;
+  font-size: 2rem;
 }
 
 .product-grid-full {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
 }
 
 .product-item {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: var(--card-shadow);
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s;
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s;
 }
 
 .product-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-6px);
 }
 
 .product-image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 15px;
+  width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 .price {
-    font-size: 1.4em;
-    color: #dc3545;
-    font-weight: bold;
-    margin: 10px 0;
+  color: var(--secondary-color);
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 .add-to-cart {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
-    margin-top: 10px;
-    width: 100%;
+  margin-top: 10px;
+  background: var(--primary-color);
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .add-to-cart:hover {
-    background-color: #0056b3;
+  background: #084298;
 }
 
-.view-reviews {
-    color: var(--secondary-color);
-    text-decoration: none;
-    font-size: 0.9em;
-    margin-top: 10px;
-    display: block;
-}
-
-/*
-========================================
-FORM STYLES (Feature 2)
-========================================
-*/
+/* ===== LOGIN / REGISTER ===== */
 .form-section {
-    display: flex;
-    justify-content: space-around;
-    padding: 40px 0;
-    gap: 30px;
+  padding: 60px 5%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
 }
 
 .form-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: var(--card-shadow);
-    width: 100%;
-    max-width: 450px;
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 420px;
+  width: 100%;
+}
+
+.form-container h2 {
+  text-align: center;
+  color: var(--secondary-color);
+  margin-bottom: 20px;
 }
 
 .form-group {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
 }
 
-.form-container input[type="text"],
-.form-container input[type="email"],
-.form-container input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #121212;
+  color: white;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
 }
 
 .error-message {
-    color: #dc3545;
-    font-size: 0.9em;
-    margin-top: 5px;
-    display: none;
+  color: #ff4444;
+  font-size: 0.9em;
 }
 
-/*
-========================================
-FOOTER STYLES (Feature 3)
-========================================
-*/
+button.cta-button {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+/* ===== FOOTER ===== */
 .main-footer {
-    background-color: var(--text-dark);
-    color: white;
-    padding: 40px 0 20px;
+  background: #111;
+  padding: 40px 5% 25px;
+  color: var(--text-muted);
 }
 
 .footer-links {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-    margin-bottom: 30px;
-    text-align: left;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 25px;
 }
 
 .footer-links h4 {
-    margin-bottom: 15px;
-    color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
-.footer-links ul {
-    list-style: none;
-    padding: 0;
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: 0.3s;
 }
 
-.footer-links ul li {
-    margin-bottom: 8px;
+.footer-links a:hover {
+  color: var(--secondary-color);
 }
 
-.footer-links ul li a {
-    color: #cccccc;
-    text-decoration: none;
-    font-size: 0.95em;
-    transition: color 0.3s;
-}
-
-.footer-links ul li a:hover {
-    color: white;
-}
-
-/*
-========================================
-RESPONSIVE DESIGN
-========================================
-*/
+/* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
-    .main-header {
-        flex-direction: column;
-    }
-    nav ul {
-        padding: 10px 0;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-    nav ul li {
-        margin: 5px 10px;
-    }
-    .form-section {
-        flex-direction: column;
-        align-items: center;
-    }
-    .form-container {
-        max-width: 90%;
-        margin-bottom: 20px;
-    }
-    .footer-links {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-    }
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background: #111;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 200px;
+    padding: 15px 0;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+  }
+
+  nav ul.mobile-show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .form-section {
+    padding: 40px 20px;
+  }
+
+  .product-grid-full {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 60px 15px;
+    margin: 15px;
+  }
+  .hero-section h1 {
+    font-size: 1.6rem;
+  }
+  .footer-links {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 </style>
 </head>
+
 <body>
 
-    <header class="main-header">
-        <div class="logo">EcomStore</div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="#products-section">Product Items</a></li>
-                <li><a href="#contact-footer">Contact Us</a></li>
-                <li><a href="#about-us">About Us</a></li>
-                <li><a href="#login-register" class="auth-link">Login/Register</a></li>
-                <li style="position: relative;"><a href="#cart">🛒 <span id="cart-counter">0</span></a></li>
-            </ul>
-        </nav>
-    </header>
+<header class="main-header">
+  <div class="logo">EcomStore</div>
+  <div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <nav>
+    <ul id="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#products-section">Products</a></li>
+      <li><a href="#login-register">Login/Register</a></li>
+      <li><a href="#contact-footer">Contact</a></li>
+      <li><a href="#cart">🛒 <span id="cart-counter">0</span></a></li>
+    </ul>
+  </nav>
+</header>
 
-    <main class="container">
-        
-        <section class="hero-section">
-            <h1>Welcome to Your E-Commerce Hub</h1>
-            <p>Shop our curated collection of 10 must-have products!</p>
-            <a href="#products-section" class="cta-button">Start Shopping</a>
-        </section>
+<main>
+  <section class="hero-section" id="home">
+    <h1>Welcome to EcomStore</h1>
+    <p>Discover our premium collection of trendy and useful items!</p>
+    <a href="#products-section" class="cta-button">Shop Now</a>
+  </section>
 
-        <section id="products-section" class="product-listing-section">
-            <h2>Featured Products (Click to add to Cart!)</h2>
-            <div id="product-list" class="product-grid-full">
-                </div>
-        </section>
+  <section id="products-section" class="product-listing-section">
+    <h2>Featured Products</h2>
+    <div id="product-list" class="product-grid-full"></div>
+  </section>
 
-        <section id="login-register" class="form-section">
-            <div class="form-container">
-                <h2>User Registration</h2>
-                <form id="registration-form">
-                    <div class="form-group">
-                        <label for="reg-name">Full Name</label>
-                        <input type="text" id="reg-name" required placeholder="Enter your full name">
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-email">Email Address</label>
-                        <input type="email" id="reg-email" required placeholder="e.g., user@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-password">Password</label>
-                        <input type="password" id="reg-password" required 
-                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                               title="Min 8 chars, 1 uppercase, 1 lowercase, 1 number."
-                               placeholder="Min 8 chars (complex)">
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-confirm-password">Confirm Password</label>
-                        <input type="password" id="reg-confirm-password" required placeholder="Re-enter password">
-                        <span id="password-match-error" class="error-message"></span>
-                    </div>
-                    <button type="submit" class="cta-button">Register Account</button>
-                    <p class="switch-form">Already registered? <a href="#">Login below.</a></p>
-                </form>
-            </div>
-            
-            <div class="form-container login-form">
-                <h2>User Login</h2>
-                <form id="login-form">
-                    <div class="form-group">
-                        <label for="log-email">Email/Username</label>
-                        <input type="text" id="log-email" required placeholder="Enter email or username">
-                    </div>
-                    <div class="form-group">
-                        <label for="log-password">Password</label>
-                        <input type="password" id="log-password" required placeholder="Enter password">
-                    </div>
-                    <button type="submit" class="cta-button">Log In</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <footer id="contact-footer" class="main-footer">
-        <div class="footer-links container">
-            <div>
-                <h4>Customer Account & Orders</h4>
-                <ul>
-                    <li><a href="#orders">🧾 Orders List</a></li>
-                    <li><a href="#wishlist">❤️ Wishlist</a></li>
-                    <li><a href="#reviews-section">⭐ Comments & Reviews</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 id="about-us">Customer Care & Reporting</h4>
-                <ul>
-                    <li><a href="#ccare">📞 Customer Care (FAQs)</a></li>
-                    <li><a href="#report">⚠️ Reporting Options</a></li>
-                    <li><a href="#about">ℹ️ About Us</a></li>
-                </ul>
-            </div>
+  <section id="login-register" class="form-section">
+    <div class="form-container">
+      <h2>Create Account</h2>
+      <form id="registration-form">
+        <div class="form-group">
+          <label for="reg-name">Full Name</label>
+          <input type="text" id="reg-name" required placeholder="Enter your name" />
         </div>
-        <p class="container">&copy; 2025 EcomStore. All rights reserved.</p>
-    </footer>
+        <div class="form-group">
+          <label for="reg-email">Email</label>
+          <input type="email" id="reg-email" required placeholder="user@example.com" />
+        </div>
+        <div class="form-group">
+          <label for="reg-password">Password</label>
+          <input type="password" id="reg-password" required
+           pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+           title="Min 8 chars, 1 uppercase, 1 lowercase, 1 number." />
+        </div>
+        <div class="form-group">
+          <label for="reg-confirm-password">Confirm Password</label>
+          <input type="password" id="reg-confirm-password" required />
+          <span id="password-match-error" class="error-message"></span>
+        </div>
+        <button type="submit" class="cta-button">Register</button>
+      </form>
+    </div>
 
-    <script>
-      const products = [
-    { id: 1, name: "Mechanical Keyboard", category: "Electronics", price: 99.99, stock: 15, reviews: 24, image: https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRA2ES9sa2iiePDfLS1VeOAkwLcE92fr4snJtGk_uRpBCxZdcsMOL3kpbiMJDvfpdPjZiUV0J5DWVrnGdIOgWWMZ4Fv2tuDxi9CsmLWO8Dly9YieUvx_nDrNQtext=Keyboard" },
-    { id: 2, name: "Noise-Cancelling Headphones", category: "Electronics", price: 149.99, stock: 8, reviews: 15, image: "https://via.placeholder.com/280x180/28a745/FFFFFF?text=Headphones" },
-    { id: 3, name: "Organic Coffee Beans", category: "Grocery", price: 12.50, stock: 45, reviews: 50, image: "https://via.placeholder.com/280x180/ffc107/343a40?text=Coffee+Beans" },
-    { id: 4, name: "Stainless Steel Water Bottle", category: "Home Goods", price: 19.99, stock: 30, reviews: 35, image: "https://via.placeholder.com/280x180/6c757d/FFFFFF?text=Water+Bottle" },
-    { id: 5, name: "Fantasy Novel Set", category: "Books", price: 45.00, stock: 12, reviews: 8, image: "https://via.placeholder.com/280x180/17a2b8/FFFFFF?text=Novel+Set" },
-    { id: 6, name: "Yoga Mat (Eco-Friendly)", category: "Sports & Outdoors", price: 35.00, stock: 22, reviews: 40, image: "https://via.placeholder.com/280x180/fd7e14/FFFFFF?text=Yoga+Mat" },
-    { id: 7, name: "Smart Home Speaker", category: "Electronics", price: 79.00, stock: 18, reviews: 30, image: "https://via.placeholder.com/280x180/6f42c1/FFFFFF?text=Smart+Speaker" },
-    { id: 8, name: "Handmade Leather Wallet", category: "Accessories", price: 55.00, stock: 10, reviews: 10, image: "https://via.placeholder.com/280x180/e83e8c/FFFFFF?text=Leather+Wallet" },
-    { id: 9, name: "Portable Blender", category: "Home Goods", price: 39.99, stock: 25, reviews: 18, image: "https://via.placeholder.com/280x180/ff5722/FFFFFF?text=Blender" },
-    { id: 10, name: "Art Sketchbook", category: "Books & Stationery", price: 14.99, stock: 50, reviews: 28, image: "https://via.placeholder.com/280x180/3f51b5/FFFFFF?text=Sketchbook" }
+    <div class="form-container">
+      <h2>Login</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="log-email">Email</label>
+          <input type="email" id="log-email" required placeholder="Enter your email" />
+        </div>
+        <div class="form-group">
+          <label for="log-password">Password</label>
+          <input type="password" id="log-password" required placeholder="Enter password" />
+        </div>
+        <button type="submit" class="cta-button">Login</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer id="contact-footer" class="main-footer">
+  <div class="footer-links">
+    <div>
+      <h4>Customer Tools</h4>
+      <ul>
+        <li><a href="#">🧾 Orders</a></li>
+        <li><a href="#">❤️ Wishlist</a></li>
+        <li><a href="#">⭐ Reviews</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">📞 Contact Us</a></li>
+        <li><a href="#">⚠️ Report Issue</a></li>
+        <li><a href="#">ℹ️ About</a></li>
+      </ul>
+    </div>
+  </div>
+  <p style="text-align:center; margin-top:20px;">&copy; 2025 EcomStore. All rights reserved.</p>
+</footer>
+
+<script>
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("nav-links");
+
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("mobile-show");
+});
+
+// PRODUCT LIST
+const products = [
+  { id: 1, name: "Mechanical Keyboard", category: "Electronics", price: 99.99, image: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQNW56RnTfPS2PAQfTSFWeGlhfCJEFV7XUUNPrdL2DGMuQRq3icgmYA6ALlsYqVox_9484wVTwdzUp5BgrRwe8Wkn__pl_7wqW-B0TGXOsWnkZx0ayxoN5sqXk" },
+  { id: 2, name: "Noise-Cancelling Headphones", category: "Electronics", price: 149.99, image: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSzARCzXI73X7Vo78guxwGg8278evYOXJCr_Jh94iq0vrm08S9aGNtVOQZ_rgD5v5GvMIjRSC99-YMwbRTU-BtTfobpyI0SNh_GdFLS9BcE02lq4U7c7iT_" },
+  { id: 3, name: "Organic Coffee Beans", category: "Grocery", price: 12.50, image: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSRXMuwwh0MUtcNmU_-rXqEM0SLSXvRzXrHw-6Jx7kpXqgbzdwJD_fkCQTSZL-LTYYpprQjLvQ6TbNi2sbWcITj2xsyNvr-ioXF6HXAtltf7RSKhUsZzy23fg" },
+  { id: 4, name: "Smart Speaker", category: "Electronics", price: 79.00, image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS4-LAQusV0qZxO1PSupN7gVCoJNHAZ_O70Cu93OxB57jKtJCdEdYYy0IKpNKLhTTKyYfnucZl4btT0wBkbOxiXxE7UMeARC0bY8g-z50ywpSzCEMGujqcN"},
+  { id: 5, name: "Yoga Mat", category: "Fitness", price: 35.00, image: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcS7n4QfI8tCskVBiJxj9HC0dnHpulWC4S-l88Cb_TF3FB_KuY2WXnrveDQepUe6Z7nj-B0urv4-QYbDF88vWCgI05Pn6SOaJcU_xQ6fJrzgIo1AVv-qZ3yf"},
+  { id: 6, name: "Leather Wallet", category: "Accessories", price: 55.00, image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRqRNtnMR4W0ecIkQoC_Ly5wT0IyJttBzzmrNnk_tiirlHsAGMMdBtDGne2kYqT3MzAoFSIekQfKKLZ8gspgek0NPXZ22RSUr9PeB9p7_qPgiTp8QT2GKov" },
 ];
 
 let cartCount = 0;
-const cartCounter = document.getElementById('cart-counter');
-const productListElement = document.getElementById('product-list');
+const cartCounter = document.getElementById("cart-counter");
+const productListElement = document.getElementById("product-list");
 
-// Function to render product cards
 function renderProducts() {
-    let htmlContent = '';
-    
-    products.forEach(product => {
-        const stockStatus = product.stock > 0 ? `In Stock: ${product.stock}` : 'Out of Stock';
-        const buttonDisabled = product.stock === 0 ? 'disabled' : '';
-
-        htmlContent += `
-            <div class="product-item" data-id="${product.id}">
-                <img src="${product.image}" alt="${product.name}" class="product-image">
-                <h3>${product.name}</h3>
-                <p class="category">${product.category}</p>
-                <p class="price"><strong>$${product.price.toFixed(2)}</strong></p>
-                <p class="stock" style="color: ${product.stock > 0 ? 'var(--secondary-color)' : '#dc3545'};">${stockStatus}</p>
-                <button class="add-to-cart" data-id="${product.id}" ${buttonDisabled}>Add to Cart</button>
-                <a href="#reviews-${product.id}" class="view-reviews">${product.reviews} Comments & Reviews</a>
-            </div>
-        `;
-    });
-
-    productListElement.innerHTML = htmlContent;
+  productListElement.innerHTML = products.map(p => `
+    <div class="product-item">
+      <img src="${p.image}" class="product-image" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <p>${p.category}</p>
+      <p class="price">$${p.price.toFixed(2)}</p>
+      <button class="add-to-cart" onclick="addToCart(${p.id})">Add to Cart</button>
+    </div>
+  `).join("");
 }
 
-// Handle Add to Cart Click
-function addToCart(productId) {
-    cartCount++;
-    cartCounter.textContent = cartCount;
-    const product = products.find(p => p.id == productId);
-    
-    // Simple alert for demonstration purposes
-    alert(`"${product.name}" added to cart! Total items: ${cartCount}`);
+function addToCart(id) {
+  cartCount++;
+  cartCounter.textContent = cartCount;
+  const product = products.find(p => p.id === id);
+  alert(`${product.name} added to cart!`);
 }
 
-productListElement.addEventListener('click', function(event) {
-    if (event.target.classList.contains('add-to-cart')) {
-        const productId = event.target.getAttribute('data-id');
-        addToCart(productId);
-    }
+document.addEventListener("DOMContentLoaded", renderProducts);
+
+// REGISTRATION VALIDATION
+document.getElementById("registration-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const pass = document.getElementById("reg-password").value;
+  const confirm = document.getElementById("reg-confirm-password").value;
+  const error = document.getElementById("password-match-error");
+
+  if (pass !== confirm) {
+    error.textContent = "Passwords do not match!";
+  } else {
+    error.textContent = "";
+    alert("Registration successful!");
+    this.reset();
+  }
 });
-
-
-/*
-========================================
-FORM VALIDATION (Feature 2)
-========================================
-*/
-
-document.getElementById('registration-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Stop form submission for client-side checks
-
-    const password = document.getElementById('reg-password').value;
-    const confirmPassword = document.getElementById('reg-confirm-password').value;
-    const errorMsg = document.getElementById('password-match-error');
-    
-    let isValid = true;
-
-    // Check 1: Password Match
-    if (password !== confirmPassword) {
-        errorMsg.textContent = 'Passwords do not match!';
-        errorMsg.style.display = 'block';
-        isValid = false;
-    } else {
-        errorMsg.style.display = 'none';
-    }
-
-    // Check 2: Basic HTML5 Pattern check (though the pattern attribute handles this)
-    const passwordInput = document.getElementById('reg-password');
-    if (!passwordInput.checkValidity()) {
-        alert(passwordInput.title);
-        isValid = false;
-    }
-    
-    if (isValid) {
-        alert("Registration Successful! (Note: This is client-side only. Data not sent to server.)");
-        // In a real application, you would send data to the backend here:
-        // this.submit(); 
-    }
-});
-
-document.getElementById('login-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Stop submission for demo
-    
-    // In a real application, you would send this data to the server for authentication
-    alert("Login attempt submitted! (Server-side validation is required for real login.)");
-});
-
-
-// Initialize the page
-document.addEventListener('DOMContentLoaded', renderProducts);
-    </script>
+</script>
 </body>
-
 </html>
